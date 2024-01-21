@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BankingProyect.Models.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankingProyect.Entities
+namespace BankingProyect.Data
 {
 	public class DbContextBSystem: DbContext
 	{
+		public DbContextBSystem()
+		{
+
+		}
 		public DbContextBSystem(DbContextOptions<DbContextBSystem> options): base(options) { }
 		public DbSet<Users> Users { get; set; }
 		public DbSet<Accounts> Acounts { get; set; }

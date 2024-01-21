@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace BankingProyect.Entities
+namespace BankingProyect.Models.Entity
 {
 	public class Accounts
 	{	[Key]

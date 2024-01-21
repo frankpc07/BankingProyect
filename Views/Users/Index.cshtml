@@ -1,19 +1,19 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@page
+@model BankingProyect.Models.Entity.Users;
+
+
 
 <h2>Index</h2>
 
-<form action="/" method="post">
+<form action="Users/Save" method="post">
 
     <div>
-        <label for="user">Username</label>
-        <input type="text"  name="user" value="" />
+        <label for="Username" >Username</label>
+        @Html.TextBoxFor(m => m.Username)
     </div>
     <div>
-        <label for="password">Password</label>
-        <input type="password"  name="password" value="" />
+        <label for="Password">Password</label>
+        @Html.TextBoxFor(m => m.Password)
     </div>
     <div>
         <input type="submit" name="name" value="Login" />

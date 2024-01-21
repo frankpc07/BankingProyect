@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BankingProyect.Models;
+using BankingProyect.Models.Entity;
 
 namespace BankingProyect.Controllers
 {
@@ -14,6 +15,7 @@ namespace BankingProyect.Controllers
 		{
 			return View();
 		}
+		
 
 		public IActionResult About()
 		{
