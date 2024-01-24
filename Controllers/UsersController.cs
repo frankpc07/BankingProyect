@@ -24,7 +24,37 @@ namespace BankingProyect.Controllers
             return View();
         }
 
-		public void Save(Users user)
+		
+
+		public IActionResult Login(Users user)
+		{
+
+			if (user.Username != null && user.Password != null)
+			{
+				user.Username = Sanitizer.GetSafeHtmlFragment(user.Username);
+				user.Password = Sanitizer.GetSafeHtmlFragment(user.Password);
+			}
+
+			string view = string.Empty;
+
+			using (DbContextBSystem dbContext = new DbContextBSystem())
+			{
+
+				string password = Convert.ToBase64String(Cryptographic.EncryptStringToByte(user.Password, _configuration["CryptoKey"], new byte[int.Parse(_configuration["IV"])]));
+
+				var myUser = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password)).ToList();
+
+				if (myUser != null)
+					view = "../Home/Index";
+				else
+					view = "index";
+
+			}
+
+			return Redirect(view);
+
+		}
+		private void Save(Users user)
 		{
 			if (user.Username != null && user.Password != null)
 			{
