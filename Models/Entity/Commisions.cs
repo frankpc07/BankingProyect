@@ -10,5 +10,7 @@ namespace BankingProyect.Models.Entity
 		[Key]
 		public int IdCommision { get; set; }
 		public decimal Commision { get; set; }
+		
+		public ICollection<Operations> Operations { get; set; }
 	}
 }

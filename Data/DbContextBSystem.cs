@@ -19,7 +19,7 @@ namespace BankingProyect.Data
 		public DbSet<Commisions> Commisions { get; set; }
 		public DbSet<Operations> Operations { get; set; }
 		public DbSet<Journal> Journal { get; set; }
-
+		public	DbSet<Clients> Clients { get; set; }
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder
 			.UseSqlServer("Server=DESKTOP-VTO0H7T\\SQLDEVLOPER;Database=BankingDB;Trusted_Connection=True;");
 	}

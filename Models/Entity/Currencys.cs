@@ -10,5 +10,8 @@ namespace BankingProyect.Models.Entity
 		[Key]
 		public int IdCurrency { get; set; }
 		public string Currency { get; set; }
+
+		public ICollection<Journal> Journal { get; set; }
+
 	}
 }

@@ -11,9 +11,10 @@ using System;
 namespace BankingProyect.Migrations
 {
     [DbContext(typeof(DbContextBSystem))]
-    partial class DbContextBSystemModelSnapshot : ModelSnapshot
+    [Migration("20240125050436_fiveMigrations")]
+    partial class fiveMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

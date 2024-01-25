@@ -15,5 +15,7 @@ namespace BankingProyect.Models.Entity
 
 		[Required]
 		public string Password { get; set; }
+
+		public ICollection<Clients> Clients { get; set; }
 	}
 }

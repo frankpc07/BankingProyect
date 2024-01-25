@@ -13,9 +13,9 @@ namespace BankingProyect.Models.Entity
 		public float TotalCommision { get; set; }
 		public DateTime DateAmount { get; set; }
 
-		public ICollection<Accounts> IdAcount { get; set; }
-		public ICollection<Currencys> IdCurrency { get; set; }
-		public ICollection<Operations> IdOperation { get; set; }
+		public int IdAccount { get; set; }
+		public int  IdCurrency { get; set; }
+		public int IdOperation { get; set; }
 
 	}
 }

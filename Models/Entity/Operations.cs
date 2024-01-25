@@ -10,7 +10,9 @@ namespace BankingProyect.Models.Entity
 		[Key]
 		public int IdOperation { get; set; }
 		public string Operation { get; set; }
+		public int IdCommision { get; set; }
 
-		public ICollection<Commisions> IdCommision { get; set; }
+		public ICollection<Journal> Journal { get; set; }
+
 	}
 }

@@ -14,7 +14,9 @@ namespace BankingProyect.Models.Entity
 
 		public decimal Balance { get; set; }
 
-		public ICollection<Users> IdUser { get; set; }
+		public int IdClient { get; set; }
+
+		public ICollection<Journal> Journal { get; set; }
 
 	}
 }
