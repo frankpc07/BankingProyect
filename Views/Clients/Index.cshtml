@@ -1,0 +1,25 @@
+﻿@page
+@model BankingProyect.Models.Entity.Clients
+
+
+
+<h2>Index</h2>
+
+<form action="Create" method="post">
+
+    <div>
+        <label>Nombres</label>
+        @Html.TextBoxFor(m => m.FirstName)
+    </div>
+    <div>
+        <label>Apellidos</label>
+        @Html.TextBoxFor(m => m.LastName)
+    </div>
+    <div>
+        <input type="submit"  value="Crear" />
+    </div>
+    <input type="hidden" name="IdUser" value="@ViewBag.IdUser" />
+</form>
+
+
+

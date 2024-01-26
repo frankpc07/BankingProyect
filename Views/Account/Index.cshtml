@@ -1,0 +1,14 @@
+﻿@model List<BankingProyect.ViewModels.InfoAccount>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@foreach (var info in Model.ToList())
+{
+    info.FirstName.ToString();
+}
+
+
+<h2>Index</h2>
+

@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankingProyect.Data;
+using BankingProyect.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingProyect.Controllers
@@ -12,20 +13,29 @@ namespace BankingProyect.Controllers
     {
         public IActionResult Index()
         {
-			dynamic mymodel = new ExpandoObject();
+			List<InfoAccount> inf = new List<InfoAccount>();
 
 			using (DbContextBSystem dbContext = new DbContextBSystem())
 			{
-				mymodel.Client = dbContext.Clients.Where(x => x.IdUser == 1);
-			}
+				var model = (
+					from acc in dbContext.Acounts
+					join cl in dbContext.Clients on acc.IdClient equals cl.IdClient
+					where (cl.IdClient == 1)
+					select new InfoAccount
+					{
+						IdClient = cl.IdClient,
+						FirstName = cl.FirstName,
+						LastName = cl.LastName,
+						Account = acc.Account,
+						Balance = acc.Balance
+					}
+					).ToList(); ;
 
-			using (DbContextBSystem dbContext = new DbContextBSystem())
-			{
-				mymodel.Accounts = dbContext.Acounts.Where(x => x.IdClient == 1);
+				inf = model;
 			}
 
 			
-			return View(mymodel);
+			return View(inf);
         }
     }
 }

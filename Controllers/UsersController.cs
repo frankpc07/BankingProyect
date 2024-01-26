@@ -37,24 +37,35 @@ namespace BankingProyect.Controllers
 
 			string view = string.Empty;
 
+			
+
 			using (DbContextBSystem dbContext = new DbContextBSystem())
 			{
 
 				string password = Convert.ToBase64String(Cryptographic.EncryptStringToByte(user.Password, _configuration["CryptoKey"], new byte[int.Parse(_configuration["IV"])]));
 
 				var myUser = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password)).ToList();
-
-				if (myUser != null)
-					view = "../Home/Index";
+				
+				if (myUser.Count >= 0)
+					view = "../Clients/Index";
 				else
 					view = "index";
 
+
+				ViewBag.IdUser = (
+									from us in myUser
+									select new
+									{
+										us.IdUser
+									}
+
+								).First().IdUser;
 			}
 
-			return Redirect(view);
+			return View(view);
 
 		}
-		private void Save(Users user)
+		public void Save(Users user)
 		{
 			if (user.Username != null && user.Password != null)
 			{
@@ -68,8 +79,11 @@ namespace BankingProyect.Controllers
 			{
 				dbContext.Users.Add(user);
 				dbContext.SaveChanges();
-
+				ViewBag.save = true;
 			}
+
+			Redirect("Index");
+			
 		}
 	}
 }

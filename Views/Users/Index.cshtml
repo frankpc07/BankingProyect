@@ -5,10 +5,11 @@
 
 <h2>Nuevo usuario</h2>
 
+
 <form action="Users/Login" method="post">
 
     <div>
-        <label for="Username" >Username</label>
+        <label for="Username">Username</label>
         @Html.TextBoxFor(m => m.Username)
     </div>
     <div>
@@ -20,4 +21,9 @@
     </div>
 
 </form>
+
+@if (ViewBag.save == true)
+{
+    @Html.Label("Usuario creado");
+}
 
