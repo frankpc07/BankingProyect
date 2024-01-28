@@ -28,41 +28,43 @@ namespace BankingProyect.Controllers
 
 		public IActionResult Login(Users user)
 		{
+			int IdUser = 0;
+			int IdClient = 0;
 
 			if (user.Username != null && user.Password != null)
 			{
 				user.Username = Sanitizer.GetSafeHtmlFragment(user.Username);
 				user.Password = Sanitizer.GetSafeHtmlFragment(user.Password);
 			}
-
-			string view = string.Empty;
-
-			
-
+						
 			using (DbContextBSystem dbContext = new DbContextBSystem())
 			{
 
 				string password = Convert.ToBase64String(Cryptographic.EncryptStringToByte(user.Password, _configuration["CryptoKey"], new byte[int.Parse(_configuration["IV"])]));
-
-				var myUser = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password)).ToList();
 				
-				if (myUser.Count >= 0)
-					view = "../Clients/Index";
-				else
-					view = "index";
+				IdUser = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password)).Single().IdUser;
+				
+				if (IdUser > 0)
+				{
+					var client = dbContext.Clients.Where(y => y.IdUser == IdUser);
 
+					foreach (var item in client)
+					{
+						IdClient = item.IdClient;
+					}
+				}
+					
 
-				ViewBag.IdUser = (
-									from us in myUser
-									select new
-									{
-										us.IdUser
-									}
-
-								).First().IdUser;
 			}
-
-			return View(view);
+			if (IdClient > 0)
+			{
+				return RedirectToAction("Index", "Account", new { Id = IdClient });
+			}
+			else
+			{
+				ViewBag.IdUser = IdUser;
+				return View("../Clients/Index");
+			}
 
 		}
 		public void Save(Users user)

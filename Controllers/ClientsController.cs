@@ -32,7 +32,7 @@ namespace BankingProyect.Controllers
 				IdCl = clients.IdClient;
 			}
 
-			return View("../Account/");
+			return View("../Account/",IdCl);
 		}
     }
 }

@@ -11,16 +11,22 @@ namespace BankingProyect.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int Id)
         {
 			List<InfoAccount> inf = new List<InfoAccount>();
 
+			InfoAccount infoAcc = new InfoAccount();
+
 			using (DbContextBSystem dbContext = new DbContextBSystem())
 			{
-				var model = (
+				var Account = dbContext.Acounts.Where(x => x.IdClient == Id);
+
+				if(Account.Count() > 0)
+				{
+					infoAcc = (
 					from acc in dbContext.Acounts
 					join cl in dbContext.Clients on acc.IdClient equals cl.IdClient
-					where (cl.IdClient == 1)
+					where (cl.IdClient == Id)
 					select new InfoAccount
 					{
 						IdClient = cl.IdClient,
@@ -29,13 +35,22 @@ namespace BankingProyect.Controllers
 						Account = acc.Account,
 						Balance = acc.Balance
 					}
-					).ToList(); ;
+					).Single();
+				}
+				else
+				{
+					var Client = dbContext.Clients.Where(x => x.IdClient == Id).Single();
 
-				inf = model;
+					infoAcc.FirstName = Client.FirstName;
+					infoAcc.LastName = Client.LastName;
+					infoAcc.IdClient = Client.IdClient;
+				
+				}
+				
 			}
 
 			
-			return View(inf);
+			return View(infoAcc);
         }
     }
 }
