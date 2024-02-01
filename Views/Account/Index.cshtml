@@ -5,16 +5,33 @@
 }
 
 
-<h2>Index</h2>
+<div>
+   <a asp-action="NewAccount" asp-route="Model.IdClient">Crear cuenta</a>
+</div>
+<hr />
+<div>
+    <label>Cliente:</label>
+    <p>@Model.FirstName @Model.LastName</p>
+</div>
 
-<label>Cliente: </label>@Model.FirstName @Model.LastName;
 
-<table>
-<tr>
-    <td>Account</td>
-</tr>
-<tr>
-    <td>Balance</td>
-</tr>
-</table>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <b> Account </b>
+    </div>
+    <div class="col-md-6">
+        <b> Balance </b>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @Model.Account
+    </div>
+    <div class="col-md-6">
+        @Model.Balance
+    </div>
+</div>
+
+
 

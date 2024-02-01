@@ -52,5 +52,10 @@ namespace BankingProyect.Controllers
 			
 			return View(infoAcc);
         }
+
+		public IActionResult NewAccount(int IdClient)
+		{
+			return View();
+		}
     }
 }
