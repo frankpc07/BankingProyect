@@ -1,26 +1,27 @@
 ﻿@page
 @model BankingProyect.Models.Entity.Users;
 
+<link href="~/css/style.css" rel="stylesheet" />
 
 
-<h2>Nuevo usuario</h2>
+<div class="login-form">
+    <form action="Users/Login" method="post">
+        <h1>Login</h1>
+        <div class="content">
+            <div class="input-field">
+                @Html.TextBoxFor(m => m.Username, new { placeholder = "Username"})
+            </div>
+            <div class="input-field">
+                @Html.TextBoxFor(m => m.Password, new { placeholder = "Password" })
+            </div>
+            <div class="action">
+                <input type="submit" name="name" value="Login" />
+            </div>
+        </div>
 
+    </form>
+</div>
 
-<form action="Users/Login" method="post">
-
-    <div>
-        <label for="Username">Username</label>
-        @Html.TextBoxFor(m => m.Username)
-    </div>
-    <div>
-        <label for="Password">Password</label>
-        @Html.TextBoxFor(m => m.Password)
-    </div>
-    <div>
-        <input type="submit" name="name" value="Create" />
-    </div>
-
-</form>
 
 @if (ViewBag.save == true)
 {

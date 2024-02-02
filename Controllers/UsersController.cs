@@ -41,17 +41,23 @@ namespace BankingProyect.Controllers
 			{
 
 				string password = Convert.ToBase64String(Cryptographic.EncryptStringToByte(user.Password, _configuration["CryptoKey"], new byte[int.Parse(_configuration["IV"])]));
+
+				var User = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password));
 				
-				IdUser = dbContext.Users.Where(x => x.Username.Contains(user.Username)).Where(x => x.Password.Contains(password)).Single().IdUser;
-				
-				if (IdUser > 0)
+				if (User.Count() > 0)
 				{
-					var client = dbContext.Clients.Where(y => y.IdUser == IdUser);
+					IdUser = User.Select(y => y.IdUser).FirstOrDefault();
+
+					var client = dbContext.Clients.Where(y => y.IdUser == IdUser );
 
 					foreach (var item in client)
 					{
 						IdClient = item.IdClient;
 					}
+				}
+				else
+				{
+					Save(user);
 				}
 					
 

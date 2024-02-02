@@ -4,7 +4,9 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankingProyect.Data;
+using BankingProyect.Models.Entity;
 using BankingProyect.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankingProyect.Controllers
@@ -53,8 +55,25 @@ namespace BankingProyect.Controllers
 			return View(infoAcc);
         }
 
-		public IActionResult NewAccount(int IdClient)
+		public IActionResult NewAccount(int id, Accounts accounts)
 		{
+			if(HttpMethods.IsPost(Request.Method))
+			{
+				
+				using (DbContextBSystem dbContext = new DbContextBSystem())
+				{
+					dbContext.Acounts.Add(accounts);
+					dbContext.SaveChanges();
+					return RedirectToAction("Index/" + id);
+
+				}
+
+			}
+			else
+			{
+				ViewBag.IdClient = id;
+			}
+
 			return View();
 		}
     }
