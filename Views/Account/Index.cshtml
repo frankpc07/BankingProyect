@@ -3,16 +3,34 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link href="~/css/style.css" rel="stylesheet" />
+<div class="info-client">
+    <div>
+        <div class="new-account">
+            <a asp-action="NewAccount" asp-route-id="@Model.IdClient">Crear cuenta</a>
+        </div>
+        <hr />
+        <div class="client">
+            <label>Cliente:</label>
+            <h2>@Model.FirstName @Model.LastName</h2>
+        </div>
+    </div>
+    <div class="operation">
+        <h3>Operation</h3>
 
+        <select name="operation">
+            @{
+                foreach (var op in ViewBag.Operation)
+                {
+                    <option value="@op.IdOperation"> @op.Operation</option>
+                }
+            }
 
-<div>
-   <a asp-action="NewAccount" asp-route-id="@Model.IdClient">Crear cuenta</a>
+        </select>
+    </div>
+   
 </div>
-<hr />
-<div>
-    <label>Cliente:</label>
-    <p>@Model.FirstName @Model.LastName</p>
-</div>
+
 
 
 <hr />

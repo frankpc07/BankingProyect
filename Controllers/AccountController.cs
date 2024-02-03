@@ -48,6 +48,8 @@ namespace BankingProyect.Controllers
 					infoAcc.IdClient = Client.IdClient;
 				
 				}
+
+				ViewBag.Operation = dbContext.Operations.ToList();
 				
 			}
 

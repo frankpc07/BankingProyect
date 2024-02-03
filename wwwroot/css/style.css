@@ -16,8 +16,9 @@ font-family: 'Rubik',sans-serif;
         border-radius:4px;
         box-shadow:0px 25px rgba(0,0,0,2);
 }
-.login-form h1{
-    padding:35px 35px 0 35px;
+
+.login-form h1 {
+    padding: 35px 35px 0 35px;
     font-weight: 300;
 }
 .login-form .content{
@@ -132,4 +133,16 @@ font-family: 'Rubik',sans-serif;
 
 .login-form .action button:nth-child(2):hover {
     background: #3c4d6d;
+}
+.info-client {
+    background: #fff;
+    width: auto;
+    margin: 65px auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    border-radius: 4px;
+    box-shadow: 0px 25px rgba(0,0,0,2);
 }
