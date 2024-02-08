@@ -19,10 +19,11 @@
         <h3>Operation</h3>
 
         <select name="operation">
+            <option value="0"> Select</option>
             @{
                 foreach (var op in ViewBag.Operation)
                 {
-                    <option value="@op.IdOperation"> @op.Operation</option>
+                    <option value="@op.IdOperation" > @op.Operation</option>
                 }
             }
 
@@ -39,10 +40,10 @@
         <b> Account </b>
     </div>
     <div class="col-md-4">
-        <b> Transactions </b>
+        <b> Balance </b>
     </div>
     <div class="col-md-4">
-        <b> Balance </b>
+        <b> Operations </b>
     </div>
 </div>
 <div class="row">
@@ -50,10 +51,21 @@
         @Model.Account
     </div>
     <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
         @Model.Balance
     </div>
+    <div class="col-md-4">
+        <div class="row ">
+            <div class="col-md-6">
+                <a class="link" href="/Account/Withdraw"><span class="glyphicon glyphicon-export">Transferir</span></a> 
+            </div>
+            <div class="col-md-6">
+                <a class="link" href="/Account/Deposit"><span class="glyphicon glyphicon-save">Depositar</span></a>  
+            </div>
+        </div>
+        
+        
+    </div>
+
 </div>
 
 

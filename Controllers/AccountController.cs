@@ -78,5 +78,16 @@ namespace BankingProyect.Controllers
 
 			return View();
 		}
+
+		public IActionResult Withdraw()
+		{
+			return View();
+		}
+
+		public IActionResult Deposit()
+		{
+			return View();
+		}
+
     }
 }
