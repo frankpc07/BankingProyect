@@ -1,0 +1,19 @@
+﻿@model BankingProyect.Models.Entity.Accounts
+
+@{
+    ViewData["Title"] = "Withdraw";
+}
+
+<h2>Withdraw</h2>
+
+<div class="withdraw">
+    <form action="/" method="post">
+        <div class="form-control">
+            <label>Monto a transferir</label>
+            @Html.TextBoxFor(x=>x.Account, new {placeholder ="0.00"})
+        </div>
+        <div>
+            @Html.TextBoxFor(x=>x.IdClient, new { value = @ViewBag.IdClient})
+        </div>
+    </form>
+</div>

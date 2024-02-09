@@ -79,8 +79,22 @@ namespace BankingProyect.Controllers
 			return View();
 		}
 
-		public IActionResult Withdraw()
+		public IActionResult Withdraw(int id, Accounts accounts)
 		{
+			if (HttpMethods.IsPost(Request.Method))
+			{
+
+				ViewBag.IdClient = id;
+			}
+			else
+			{
+				using (DbContextBSystem dbContext = new DbContextBSystem())
+				{
+					dbContext.Update(accounts);
+					return RedirectToAction("Index/" + id);
+
+				}
+			}
 			return View();
 		}
 
